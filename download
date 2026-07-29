@@ -1,0 +1,280 @@
+/* ==========================================================================
+   LAYOUT — .eg-shell / .eg-sidebar / .eg-topbar / .eg-page
+   Conta più di tutti gli altri file: è la struttura che fa dire
+   "è lo stesso software" molto prima dei colori.
+
+   Direzione fluida: la sidebar è una scheda che galleggia sull'avorio,
+   non un pannello incastrato nel bordo. Sopra l'avorio c'è il bagliore
+   arancione preso dai materiali di marca.
+   ========================================================================== */
+
+.eg-shell {
+  display: grid;
+  grid-template-columns: var(--eg-sidebar-w) minmax(0, 1fr);
+  gap: var(--eg-space-gutter);
+  min-height: 100vh;
+  padding: var(--eg-space-gutter);
+  background: var(--eg-bg-app);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Firma: l'alone arancione degli originali di marca, fisso in alto a destra.
+   È l'unico elemento decorativo del sistema — tutto il resto lavora. */
+.eg-shell::before {
+  content: "";
+  position: fixed;
+  top: -20vh;
+  right: -10vw;
+  width: 70vw;
+  height: 70vh;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side,
+      rgba(var(--eg-brand-rgb), 0.30),
+      rgba(var(--eg-brand-rgb), 0.10) 55%,
+      transparent 78%);
+  filter: blur(20px);
+}
+
+[data-eg-theme="dark"] .eg-shell::before {
+  background: radial-gradient(closest-side,
+    rgba(var(--eg-brand-rgb), 0.16),
+    transparent 72%);
+}
+
+/* --- Sidebar: scheda nera sospesa ---------------------------------------- */
+.eg-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: var(--eg-space-gutter);
+  height: calc(100vh - var(--eg-space-gutter) * 2);
+  padding: var(--eg-space-3);
+  border-radius: var(--eg-radius-xl);
+  background: var(--eg-brand-black);
+  color: var(--eg-neutral-300);
+  box-shadow: var(--eg-shadow-md);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.eg-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  height: var(--eg-topbar-h);
+  padding: 0 var(--eg-space-3);
+  color: var(--eg-neutral-0);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  font-size: var(--eg-text-sm);
+  text-transform: uppercase;
+}
+
+/* Il segno del marchio: l'arco arancione del logo, ridotto a un tratto */
+.eg-sidebar__mark {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50% 50% 50% 4px;
+  background: linear-gradient(135deg, var(--eg-primary-400), var(--eg-primary-600));
+  box-shadow: var(--eg-glow-brand);
+}
+
+.eg-sidebar__section {
+  padding: var(--eg-space-5) var(--eg-space-3) var(--eg-space-2);
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.eg-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eg-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  height: var(--eg-control-h-md);
+  padding: 0 var(--eg-space-3);
+  border-radius: var(--eg-radius-full);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--eg-text-base);
+  font-weight: var(--eg-weight-medium);
+  text-decoration: none;
+  transition: background-color var(--eg-duration-fast) var(--eg-ease),
+              color var(--eg-duration-fast) var(--eg-ease),
+              transform var(--eg-duration-fast) var(--eg-ease);
+}
+
+.eg-nav-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--eg-neutral-0);
+  transform: translateX(2px);
+}
+
+/* Voce attiva: pillola arancione piena, testo nero — la stessa coppia
+   del logo, e l'unica leggibile su #ff9330. */
+.eg-nav-item[aria-current="page"],
+.eg-nav-item--active {
+  background: var(--eg-primary-500);
+  color: var(--eg-on-primary);
+  font-weight: var(--eg-weight-semibold);
+  box-shadow: var(--eg-glow-brand);
+}
+
+.eg-nav-item[aria-current="page"]:hover,
+.eg-nav-item--active:hover {
+  background: var(--eg-primary-400);
+  color: var(--eg-on-primary);
+}
+
+.eg-nav-item__badge {
+  margin-left: auto;
+  font-family: var(--eg-font-mono);
+  font-size: var(--eg-text-xs);
+  color: inherit;
+  opacity: 0.7;
+}
+
+.eg-sidebar__footer {
+  margin-top: auto;
+  padding: var(--eg-space-4) var(--eg-space-3) var(--eg-space-2);
+  font-size: var(--eg-text-xs);
+  color: rgba(255, 255, 255, 0.32);
+}
+
+/* --- Colonna principale --------------------------------------------------- */
+.eg-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: var(--eg-space-gutter);
+}
+
+/* Topbar velata: lascia trasparire il bagliore mentre si scorre */
+.eg-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  height: var(--eg-topbar-h);
+  padding: 0 var(--eg-space-5);
+  border-radius: var(--eg-radius-lg);
+  background: var(--eg-bg-veil);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: var(--eg-shadow-sm);
+  position: sticky;
+  top: var(--eg-space-gutter);
+  z-index: var(--eg-z-sticky);
+}
+
+.eg-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+  font-size: var(--eg-text-sm);
+  color: var(--eg-text-muted);
+}
+.eg-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--eg-duration-fast) var(--eg-ease);
+}
+.eg-breadcrumb a:hover { color: var(--eg-text-primary); }
+.eg-breadcrumb__sep { color: var(--eg-border-strong); }
+
+.eg-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--eg-radius-full);
+  background: var(--eg-primary-500);
+  color: var(--eg-on-primary);
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+}
+
+/* --- Pagina ---------------------------------------------------------------- */
+.eg-page {
+  width: 100%;
+  max-width: var(--eg-content-max);
+  margin: 0 auto;
+  padding: 0 var(--eg-space-2) var(--eg-space-section);
+}
+
+.eg-page__header {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--eg-space-4);
+  margin-bottom: var(--eg-space-section);
+}
+
+.eg-page__subtitle {
+  margin: var(--eg-space-2) 0 0;
+  color: var(--eg-text-secondary);
+  max-width: 62ch;
+}
+
+.eg-page__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+}
+
+/* Griglia fluida: si adatta senza breakpoint manuali */
+.eg-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: var(--eg-space-gutter);
+}
+
+/* --- Barra filtri sopra le tabelle ---------------------------------------- */
+.eg-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--eg-space-2);
+  margin-bottom: var(--eg-space-4);
+}
+.eg-toolbar__search { min-width: 240px; flex: 1 1 240px; max-width: 400px; }
+
+/* --- Responsive: la sidebar diventa una barra flottante in alto ---------- */
+@media (max-width: 900px) {
+  .eg-shell {
+    grid-template-columns: 1fr;
+    padding: var(--eg-space-3);
+  }
+  .eg-sidebar {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--eg-space-2);
+    overflow-x: auto;
+    border-radius: var(--eg-radius-lg);
+  }
+  .eg-sidebar__brand {
+    height: auto;
+    padding-right: var(--eg-space-2);
+  }
+  .eg-sidebar__name { display: none; }
+  .eg-sidebar__section,
+  .eg-sidebar__footer { display: none; }
+  .eg-sidebar__nav { flex-direction: row; }
+  .eg-nav-item { white-space: nowrap; }
+  .eg-nav-item:hover { transform: none; }
+  .eg-topbar { position: static; }
+}

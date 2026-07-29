@@ -1,0 +1,195 @@
+/* ==========================================================================
+   DATA — .eg-table / .eg-card / .eg-badge / .eg-empty
+   ========================================================================== */
+
+/* --- Card ---------------------------------------------------------------- */
+.eg-card {
+  background: var(--eg-bg-surface);
+  border: 1px solid var(--eg-border);
+  border-radius: var(--eg-radius-lg);
+  box-shadow: var(--eg-shadow-sm);
+  transition: box-shadow var(--eg-duration-base) var(--eg-ease),
+              transform var(--eg-duration-base) var(--eg-ease);
+}
+
+/* Solo le card cliccabili reagiscono: il movimento segnala l'interazione,
+   non decora. */
+.eg-card--interactive { cursor: pointer; }
+.eg-card--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--eg-shadow-md);
+}
+
+.eg-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  padding: var(--eg-space-4) var(--eg-space-5);
+  border-bottom: 1px solid var(--eg-border);
+}
+
+.eg-card__body { padding: var(--eg-space-5); }
+
+.eg-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--eg-space-2);
+  padding: var(--eg-space-4) var(--eg-space-5);
+  border-top: 1px solid var(--eg-border);
+  background: var(--eg-bg-sunken);
+  border-radius: 0 0 var(--eg-radius-lg) var(--eg-radius-lg);
+}
+
+/* KPI: il numero è il protagonista, la label lo serve */
+.eg-kpi__label {
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: var(--eg-text-muted);
+}
+.eg-kpi__value {
+  margin-top: var(--eg-space-1);
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--eg-text-2xl);
+  font-weight: var(--eg-weight-semibold);
+  line-height: var(--eg-leading-tight);
+  letter-spacing: var(--eg-tracking-title);
+}
+
+/* --- Tabella ------------------------------------------------------------- */
+.eg-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--eg-border);
+  border-radius: var(--eg-radius-lg);
+  background: var(--eg-bg-surface);
+  box-shadow: var(--eg-shadow-sm);
+}
+
+.eg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--eg-text-sm);
+}
+
+/* L'intestazione si ferma sotto la topbar, non sotto il bordo finestra */
+.eg-table thead th {
+  position: sticky;
+  top: calc(var(--eg-topbar-h) + var(--eg-space-gutter));
+  z-index: var(--eg-z-dropdown);
+  padding: var(--eg-space-3) var(--eg-space-4);
+  background: var(--eg-bg-surface);
+  border-bottom: 1px solid var(--eg-border);
+  text-align: left;
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: var(--eg-text-muted);
+  white-space: nowrap;
+}
+
+.eg-table tbody td {
+  padding: var(--eg-space-3) var(--eg-space-4);
+  border-bottom: 1px solid var(--eg-border);
+  color: var(--eg-text-primary);
+  vertical-align: middle;
+}
+
+.eg-table tbody tr:last-child td { border-bottom: 0; }
+
+.eg-table tbody tr {
+  transition: background-color var(--eg-duration-fast) var(--eg-ease);
+}
+.eg-table tbody tr:hover { background: var(--eg-bg-hover); }
+
+.eg-table tbody tr[aria-selected="true"] { background: var(--eg-bg-selected); }
+
+/* Importi e date: colonna numerica allineata a destra, monospace */
+.eg-table .eg-col-num {
+  text-align: right;
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eg-table .eg-col-actions {
+  width: 1%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.eg-table--compact tbody td { padding: var(--eg-space-2) var(--eg-space-4); }
+
+/* --- Badge / stato ------------------------------------------------------- */
+.eg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--eg-space-1);
+  height: 24px;
+  padding: 0 var(--eg-space-3);
+  border-radius: var(--eg-radius-full);
+  background: var(--eg-bg-sunken);
+  color: var(--eg-text-secondary);
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-medium);
+  white-space: nowrap;
+}
+
+.eg-badge--success { background: var(--eg-success-50); color: var(--eg-success-700); }
+.eg-badge--warning { background: var(--eg-warning-50); color: var(--eg-warning-700); }
+.eg-badge--danger  { background: var(--eg-danger-50);  color: var(--eg-danger-700); }
+.eg-badge--info    { background: var(--eg-info-50);    color: var(--eg-info-700); }
+.eg-badge--brand   { background: var(--eg-primary-100); color: var(--eg-primary-800); }
+
+/* Pallino di stato per liste dense, dove il badge sarebbe troppo pesante */
+.eg-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--eg-radius-full);
+  background: var(--eg-neutral-400);
+}
+.eg-dot--success { background: var(--eg-success-500); }
+.eg-dot--warning { background: var(--eg-warning-500); }
+.eg-dot--danger  { background: var(--eg-danger-500); }
+
+/* --- Stato vuoto: è un invito ad agire, non un messaggio di scusa -------- */
+.eg-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--eg-space-3);
+  padding: var(--eg-space-section) var(--eg-space-6);
+  text-align: center;
+}
+.eg-empty__title {
+  font-size: var(--eg-text-lg);
+  font-weight: var(--eg-weight-semibold);
+}
+.eg-empty__text {
+  max-width: 44ch;
+  color: var(--eg-text-secondary);
+}
+
+/* --- Skeleton di caricamento -------------------------------------------- */
+.eg-skeleton {
+  height: 1em;
+  border-radius: var(--eg-radius-sm);
+  background: linear-gradient(90deg,
+    var(--eg-bg-sunken) 25%,
+    var(--eg-neutral-200) 37%,
+    var(--eg-bg-sunken) 63%);
+  background-size: 400% 100%;
+  animation: eg-shimmer 1.4s ease infinite;
+}
+
+@keyframes eg-shimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eg-skeleton { animation: none; }
+}

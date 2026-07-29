@@ -1,0 +1,94 @@
+/* ==========================================================================
+   ELIXIR UI — RESET + BASE
+   Volutamente minimo: durante la migrazione non deve ribaltare il CSS esistente.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.eg-app {
+  margin: 0;
+  background: var(--eg-bg-app);
+  color: var(--eg-text-primary);
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-base);
+  line-height: var(--eg-leading-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus visibile ovunque, identico nei tre gestionali. Non rimuoverlo. */
+.eg-app :focus-visible,
+.eg-btn:focus-visible,
+.eg-input:focus-visible {
+  outline: 2px solid var(--eg-primary-700);
+  outline-offset: 2px;
+  border-radius: var(--eg-radius-sm);
+}
+
+/* --- Tipografia utility --------------------------------------------------- */
+.eg-title-page {
+  margin: 0;
+  font-size: var(--eg-text-xl);
+  font-weight: var(--eg-weight-semibold);
+  line-height: var(--eg-leading-tight);
+  letter-spacing: var(--eg-tracking-title);
+}
+
+.eg-title-section {
+  margin: 0;
+  font-size: var(--eg-text-lg);
+  font-weight: var(--eg-weight-semibold);
+  line-height: var(--eg-leading-tight);
+  letter-spacing: var(--eg-tracking-title);
+}
+
+/* Eyebrow / label: maiuscoletto spaziato, usato per intestare gruppi */
+.eg-label-eyebrow {
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: var(--eg-text-muted);
+}
+
+.eg-text-secondary { color: var(--eg-text-secondary); }
+.eg-text-muted     { color: var(--eg-text-muted); }
+
+/* Numeri, importi, ID, date: sempre monospace tabellare */
+.eg-num {
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95em;
+}
+
+.eg-link {
+  color: var(--eg-text-link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--eg-duration-fast) var(--eg-ease);
+}
+.eg-link:hover { border-bottom-color: currentColor; }
+
+.eg-divider {
+  height: 1px;
+  border: 0;
+  margin: var(--eg-space-6) 0;
+  background: var(--eg-border);
+}
+
+/* --- Stack: spaziatura verticale coerente senza margini casuali ---------- */
+.eg-stack   { display: flex; flex-direction: column; gap: var(--eg-space-4); }
+.eg-stack-section { display: flex; flex-direction: column; gap: var(--eg-space-section); }
+.eg-stack-2 { display: flex; flex-direction: column; gap: var(--eg-space-2); }
+.eg-stack-6 { display: flex; flex-direction: column; gap: var(--eg-space-6); }
+
+.eg-row {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+}
+.eg-row-end { margin-left: auto; }

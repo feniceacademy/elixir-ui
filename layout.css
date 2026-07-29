@@ -1,0 +1,117 @@
+/* ==========================================================================
+   BUTTON — .eg-btn
+   Varianti: --primary | --secondary | --ghost | --danger
+   Dimensioni: --sm | (default md) | --lg
+   Forma a pillola: coerente con i chip della guida di marca e con la
+   navigazione. Il movimento è minimo e sempre lo stesso: 1px verso l'alto.
+   ========================================================================== */
+
+.eg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--eg-space-2);
+  height: var(--eg-control-h-md);
+  padding: 0 var(--eg-space-5);
+  border: 1px solid transparent;
+  border-radius: var(--eg-radius-full);
+  background: transparent;
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-base);
+  font-weight: var(--eg-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--eg-duration-fast) var(--eg-ease),
+              border-color var(--eg-duration-fast) var(--eg-ease),
+              color var(--eg-duration-fast) var(--eg-ease),
+              box-shadow var(--eg-duration-base) var(--eg-ease),
+              transform var(--eg-duration-fast) var(--eg-ease);
+}
+
+.eg-btn:hover:not(:disabled) { transform: translateY(-1px); }
+.eg-btn:active:not(:disabled) {
+  transform: translateY(0);
+  transition-duration: 60ms;
+}
+
+.eg-btn:disabled,
+.eg-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Varianti -------------------------------------------------------------
+   Arancione pieno + testo nero: la coppia del logo, e l'unica leggibile
+   su #ff9330 (9.5:1, contro i 2.2:1 del bianco).                            */
+.eg-btn--primary {
+  background: var(--eg-primary-500);
+  border-color: var(--eg-primary-500);
+  color: var(--eg-on-primary);
+  font-weight: var(--eg-weight-semibold);
+  box-shadow: var(--eg-glow-brand);
+}
+.eg-btn--primary:hover:not(:disabled) {
+  background: var(--eg-primary-400);
+  border-color: var(--eg-primary-400);
+  box-shadow: 0 10px 26px -8px rgba(var(--eg-brand-rgb), 0.7);
+}
+
+.eg-btn--secondary {
+  background: var(--eg-bg-surface);
+  border-color: var(--eg-border-strong);
+  color: var(--eg-text-primary);
+  box-shadow: var(--eg-shadow-xs);
+}
+.eg-btn--secondary:hover:not(:disabled) {
+  border-color: var(--eg-neutral-400);
+  box-shadow: var(--eg-shadow-sm);
+}
+
+.eg-btn--ghost {
+  color: var(--eg-text-secondary);
+}
+.eg-btn--ghost:hover:not(:disabled) {
+  background: var(--eg-bg-hover);
+  color: var(--eg-text-primary);
+  transform: none;
+}
+
+.eg-btn--danger {
+  background: var(--eg-danger-500);
+  border-color: var(--eg-danger-500);
+  color: var(--eg-neutral-0);
+}
+.eg-btn--danger:hover:not(:disabled) {
+  background: var(--eg-danger-600);
+  border-color: var(--eg-danger-600);
+}
+
+/* --- Dimensioni ------------------------------------------------------------ */
+.eg-btn--sm {
+  height: var(--eg-control-h-sm);
+  padding: 0 var(--eg-space-3);
+  font-size: var(--eg-text-sm);
+}
+.eg-btn--lg {
+  height: var(--eg-control-h-lg);
+  padding: 0 var(--eg-space-6);
+  font-size: var(--eg-text-md);
+}
+
+.eg-btn--icon {
+  width: var(--eg-control-h-md);
+  padding: 0;
+}
+.eg-btn--icon.eg-btn--sm { width: var(--eg-control-h-sm); }
+
+.eg-btn--block { width: 100%; }
+
+.eg-btn-group {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+}

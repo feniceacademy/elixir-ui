@@ -1,0 +1,148 @@
+/* ==========================================================================
+   FORM — .eg-field / .eg-input / .eg-select / .eg-textarea
+   ========================================================================== */
+
+.eg-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--eg-space-2);
+}
+
+.eg-field__label {
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-medium);
+  color: var(--eg-text-primary);
+}
+
+.eg-field__label--required::after {
+  content: "*";
+  margin-left: 2px;
+  color: var(--eg-danger-500);
+}
+
+/* Aiuto: cosa scrivere. Errore: cosa è successo e come si risolve. */
+.eg-field__hint {
+  font-size: var(--eg-text-xs);
+  color: var(--eg-text-muted);
+}
+
+.eg-field__error {
+  font-size: var(--eg-text-xs);
+  color: var(--eg-danger-600);
+}
+
+/* --- Controlli ----------------------------------------------------------- */
+.eg-input,
+.eg-select,
+.eg-textarea {
+  width: 100%;
+  padding: 0 var(--eg-space-3);
+  border: 1px solid var(--eg-border-strong);
+  border-radius: var(--eg-radius-md);
+  background: var(--eg-bg-surface);
+  box-shadow: var(--eg-shadow-xs);
+  color: var(--eg-text-primary);
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-md);
+  line-height: var(--eg-leading-base);
+  transition: border-color var(--eg-duration-fast) var(--eg-ease),
+              box-shadow var(--eg-duration-base) var(--eg-ease);
+}
+
+.eg-input,
+.eg-select {
+  height: var(--eg-control-h-md);
+}
+
+.eg-textarea {
+  min-height: 96px;
+  padding: var(--eg-space-2) var(--eg-space-3);
+  resize: vertical;
+}
+
+.eg-input::placeholder,
+.eg-textarea::placeholder {
+  color: var(--eg-text-muted);
+}
+
+.eg-input:hover:not(:disabled),
+.eg-select:hover:not(:disabled),
+.eg-textarea:hover:not(:disabled) {
+  border-color: var(--eg-neutral-400);
+}
+
+.eg-input:focus,
+.eg-select:focus,
+.eg-textarea:focus {
+  outline: none;
+  border-color: var(--eg-primary-500);
+  box-shadow: var(--eg-ring-focus);
+}
+
+.eg-input:disabled,
+.eg-select:disabled,
+.eg-textarea:disabled {
+  background: var(--eg-bg-sunken);
+  color: var(--eg-text-muted);
+  cursor: not-allowed;
+}
+
+.eg-input--invalid,
+.eg-select--invalid,
+.eg-textarea--invalid {
+  border-color: var(--eg-danger-500);
+}
+.eg-input--invalid:focus,
+.eg-textarea--invalid:focus {
+  box-shadow: 0 0 0 3px var(--eg-danger-50);
+}
+
+.eg-input--sm,
+.eg-select--sm {
+  height: var(--eg-control-h-sm);
+  font-size: var(--eg-text-sm);
+  padding: 0 var(--eg-space-2);
+}
+
+/* Campi numerici e importi in monospace */
+.eg-input--num {
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.eg-select {
+  appearance: none;
+  padding-right: var(--eg-space-8);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23736c63' stroke-width='1.6' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--eg-space-3) center;
+}
+
+/* --- Checkbox / radio ---------------------------------------------------- */
+.eg-check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+  font-size: var(--eg-text-base);
+  cursor: pointer;
+}
+.eg-check input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--eg-primary-600);
+  cursor: pointer;
+}
+
+/* --- Griglia form: due colonne che collassano su mobile ------------------ */
+.eg-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--eg-space-gutter);
+}
+.eg-form-grid > .eg-field--full { grid-column: 1 / -1; }
+
+@media (max-width: 720px) {
+  .eg-form-grid { grid-template-columns: 1fr; }
+}

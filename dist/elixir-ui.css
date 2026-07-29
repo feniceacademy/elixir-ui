@@ -1,0 +1,1283 @@
+/*! elixir-ui v0.1.0 — design system Elixir Group. Non modificare dist/: si genera con "npm run build". */
+
+/* ===== src/tokens.css ===== */
+/* ==========================================================================
+   ELIXIR UI — TOKENS
+   Identità Elixir Group: #ff9330 · #000000 · #f5f2ef · Poppins
+   Direzione: fluida. Le misure scalano con la finestra invece di saltare
+   tra breakpoint, le superfici galleggiano invece di incastrarsi.
+   ========================================================================== */
+
+:root {
+  /* --- Colori di marca -------------------------------------------------- */
+  --eg-brand:       #ff9330;
+  --eg-brand-black: #000000;
+  --eg-brand-ivory: #f5f2ef;
+
+  /* --- Scala arancio derivata dal brand --------------------------------- */
+  /* #ff9330 ha 2.2:1 sul bianco: superficie magnifica, testo illeggibile.
+     Per il testo esistono i toni 700/800.                                  */
+  --eg-primary-50:  #fff6ed;
+  --eg-primary-100: #ffe8d1;
+  --eg-primary-200: #ffd3a8;
+  --eg-primary-300: #ffb670;
+  --eg-primary-400: #ffa34d;
+  --eg-primary-500: #ff9330;  /* colore di marca */
+  --eg-primary-600: #f07c12;
+  --eg-primary-700: #b85a06;  /* testo e link: 4.7:1 sul bianco */
+  --eg-primary-800: #8a4304;
+
+  --eg-brand-rgb: 255, 147, 48;
+
+  /* --- Neutri caldi, tarati sull'avorio --------------------------------- */
+  --eg-neutral-0:   #ffffff;
+  --eg-neutral-50:  #f5f2ef;
+  --eg-neutral-100: #ece8e3;
+  --eg-neutral-200: #ded8d1;
+  --eg-neutral-300: #c7c0b7;
+  --eg-neutral-400: #9c948a;
+  --eg-neutral-500: #736c63;
+  --eg-neutral-600: #55504a;
+  --eg-neutral-700: #3a3733;
+  --eg-neutral-800: #232120;
+  --eg-neutral-900: #0f0e0d;
+
+  /* --- Semantici ---------------------------------------------------------
+     L'arancione è marchio e azione: non può essere anche avviso.
+     Il warning è un ambra scuro, distinto da #ff9330 a colpo d'occhio.     */
+  --eg-success-50:  #e9f5ef;
+  --eg-success-500: #1f7a52;
+  --eg-success-700: #145639;
+
+  --eg-warning-50:  #fbf3dc;
+  --eg-warning-500: #8f6b00;
+  --eg-warning-700: #6d5100;
+
+  --eg-danger-50:   #fceceb;
+  --eg-danger-500:  #b3261e;
+  --eg-danger-600:  #971d16;
+  --eg-danger-700:  #741511;
+
+  --eg-info-50:     #eaf0f9;
+  --eg-info-500:    #2f5aa8;
+  --eg-info-700:    #234480;
+
+  /* --- Ruoli semantici --------------------------------------------------- */
+  --eg-bg-app:          var(--eg-neutral-50);
+  --eg-bg-surface:      var(--eg-neutral-0);
+  --eg-bg-sunken:       var(--eg-neutral-100);
+  --eg-bg-hover:        rgba(35, 33, 32, 0.045);
+  --eg-bg-selected:     var(--eg-primary-50);
+  --eg-bg-inverse:      var(--eg-brand-black);
+
+  /* Superficie traslucida: le barre fisse lasciano intravedere il bagliore */
+  --eg-bg-veil:         rgba(255, 255, 255, 0.72);
+
+  --eg-text-primary:    var(--eg-neutral-900);
+  --eg-text-secondary:  var(--eg-neutral-600);
+  --eg-text-muted:      var(--eg-neutral-500);
+  --eg-text-inverse:    var(--eg-neutral-0);
+  --eg-text-link:       var(--eg-primary-700);
+
+  /* Testo sopra il pieno arancione: nero, come nel logo. */
+  --eg-on-primary:      var(--eg-brand-black);
+
+  --eg-border:          rgba(35, 33, 32, 0.08);
+  --eg-border-strong:   rgba(35, 33, 32, 0.16);
+  --eg-border-focus:    var(--eg-primary-700);
+
+  /* --- Tipografia — Poppins, come da guida di marca ---------------------- */
+  --eg-font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                  Roboto, "Helvetica Neue", Arial, sans-serif;
+  --eg-font-mono: "JetBrains Mono", "SF Mono", "Cascadia Mono", Consolas,
+                  "Liberation Mono", monospace;
+
+  /* Scala fluida: cresce con la finestra invece di scattare ai breakpoint.
+     La guida di marca (corpo 30, H1 70) vale per il sito; un gestionale
+     denso ha bisogno di una scala compressa — stessa identità, densità da
+     strumento di lavoro.                                                   */
+  --eg-text-xs:   clamp(0.6875rem, 0.67rem + 0.08vw, 0.75rem);
+  --eg-text-sm:   clamp(0.75rem,   0.73rem + 0.10vw, 0.8125rem);
+  --eg-text-base: clamp(0.8125rem, 0.79rem + 0.12vw, 0.9375rem);
+  --eg-text-md:   clamp(0.875rem,  0.85rem + 0.14vw, 1rem);
+  --eg-text-lg:   clamp(1rem,      0.96rem + 0.22vw, 1.1875rem);
+  --eg-text-xl:   clamp(1.25rem,   1.14rem + 0.50vw, 1.75rem);
+  --eg-text-2xl:  clamp(1.625rem,  1.42rem + 0.95vw, 2.5rem);
+
+  --eg-weight-regular:  400;
+  --eg-weight-medium:   500;
+  --eg-weight-semibold: 600;
+  --eg-weight-bold:     700;
+
+  --eg-leading-tight: 1.2;
+  --eg-leading-base:  1.55;
+  --eg-leading-loose: 1.7;
+
+  /* Poppins è geometrico e largo: i titoli vanno stretti, le label aperte */
+  --eg-tracking-title: -0.025em;
+  --eg-tracking-label: 0.08em;
+
+  /* --- Spaziature: base fissa 4px + due passi fluidi per il respiro ----- */
+  --eg-space-1:  0.25rem;
+  --eg-space-2:  0.5rem;
+  --eg-space-3:  0.75rem;
+  --eg-space-4:  1rem;
+  --eg-space-5:  1.25rem;
+  --eg-space-6:  1.5rem;
+  --eg-space-8:  2rem;
+  --eg-space-10: 2.5rem;
+  --eg-space-12: 3rem;
+
+  --eg-space-gutter:  clamp(0.75rem, 0.45rem + 1.2vw, 1.5rem);
+  --eg-space-section: clamp(1.5rem,  1.05rem + 1.8vw, 3rem);
+
+  /* --- Raggi: morbidi, coerenti con i chip arrotondati della guida ------ */
+  --eg-radius-sm:   8px;
+  --eg-radius-md:   12px;
+  --eg-radius-lg:   18px;
+  --eg-radius-xl:   26px;
+  --eg-radius-full: 999px;
+
+  /* --- Profondità: ombre calde e stratificate, niente bordi duri -------- */
+  --eg-shadow-xs: 0 1px 2px rgba(35, 33, 32, 0.05);
+  --eg-shadow-sm: 0 2px 4px rgba(35, 33, 32, 0.04),
+                  0 6px 16px -8px rgba(35, 33, 32, 0.10);
+  --eg-shadow-md: 0 4px 8px rgba(35, 33, 32, 0.05),
+                  0 16px 32px -12px rgba(35, 33, 32, 0.16);
+  --eg-shadow-lg: 0 8px 16px rgba(35, 33, 32, 0.06),
+                  0 32px 64px -24px rgba(35, 33, 32, 0.28);
+
+  /* Alone arancione: solo sotto l'azione primaria, mai altrove */
+  --eg-glow-brand: 0 6px 20px -6px rgba(var(--eg-brand-rgb), 0.55);
+  --eg-ring-focus: 0 0 0 3px rgba(var(--eg-brand-rgb), 0.35);
+
+  /* --- Altezze controlli: la densità è ciò che rende due app gemelle ---- */
+  --eg-control-h-sm: 30px;
+  --eg-control-h-md: 38px;
+  --eg-control-h-lg: 46px;
+
+  /* --- Layout fluido ----------------------------------------------------- */
+  --eg-sidebar-w:           clamp(216px, 17vw, 268px);
+  --eg-sidebar-w-collapsed: 68px;
+  --eg-topbar-h:            60px;
+  --eg-content-max:         1520px;
+
+  /* --- Motion: una curva sola, usata ovunque ---------------------------- */
+  --eg-ease:        cubic-bezier(0.22, 0.61, 0.28, 1);
+  --eg-ease-spring: cubic-bezier(0.34, 1.42, 0.64, 1);
+  --eg-duration-fast: 140ms;
+  --eg-duration-base: 260ms;
+  --eg-duration-slow: 420ms;
+
+  /* --- Z-index: scala unica, niente guerre di 9999 ---------------------- */
+  --eg-z-dropdown: 100;
+  --eg-z-sticky:   200;
+  --eg-z-overlay:  300;
+  --eg-z-modal:    400;
+  --eg-z-toast:    500;
+}
+
+/* --- Tema scuro: <html data-eg-theme="dark"> ----------------------------- */
+[data-eg-theme="dark"] {
+  --eg-bg-app:         #14120f;
+  --eg-bg-surface:     #1e1b18;
+  --eg-bg-sunken:      #0d0b09;
+  --eg-bg-hover:       rgba(255, 255, 255, 0.06);
+  --eg-bg-selected:    #3a2411;
+  --eg-bg-inverse:     var(--eg-neutral-100);
+  --eg-bg-veil:        rgba(30, 27, 24, 0.72);
+
+  --eg-text-primary:   #f2ede8;
+  --eg-text-secondary: #b6ada3;
+  --eg-text-muted:     #8b8279;
+  --eg-text-inverse:   var(--eg-neutral-900);
+  --eg-text-link:      var(--eg-primary-400);
+
+  --eg-border:         rgba(255, 255, 255, 0.09);
+  --eg-border-strong:  rgba(255, 255, 255, 0.18);
+  --eg-border-focus:   var(--eg-primary-500);
+
+  --eg-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --eg-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --eg-shadow-md: 0 16px 32px -12px rgba(0, 0, 0, 0.6);
+  --eg-shadow-lg: 0 32px 64px -24px rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --eg-duration-fast: 0ms;
+    --eg-duration-base: 0ms;
+    --eg-duration-slow: 0ms;
+  }
+}
+
+/* --- Sotto-aziende ------------------------------------------------------
+   Struttura identica in tutti i gestionali: cambia solo l'accento, se e
+   quando vorrai distinguerli. Senza attributo resta l'arancione Elixir.
+   Uso: <html data-eg-brand="serenamente">
+   -------------------------------------------------------------------- */
+[data-eg-brand="fenice"] {
+  /* Fenice Academy condivide l'arancione del gruppo: nessun override. */
+}
+
+
+/* ===== src/base.css ===== */
+/* ==========================================================================
+   ELIXIR UI — RESET + BASE
+   Volutamente minimo: durante la migrazione non deve ribaltare il CSS esistente.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.eg-app {
+  margin: 0;
+  background: var(--eg-bg-app);
+  color: var(--eg-text-primary);
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-base);
+  line-height: var(--eg-leading-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus visibile ovunque, identico nei tre gestionali. Non rimuoverlo. */
+.eg-app :focus-visible,
+.eg-btn:focus-visible,
+.eg-input:focus-visible {
+  outline: 2px solid var(--eg-primary-700);
+  outline-offset: 2px;
+  border-radius: var(--eg-radius-sm);
+}
+
+/* --- Tipografia utility --------------------------------------------------- */
+.eg-title-page {
+  margin: 0;
+  font-size: var(--eg-text-xl);
+  font-weight: var(--eg-weight-semibold);
+  line-height: var(--eg-leading-tight);
+  letter-spacing: var(--eg-tracking-title);
+}
+
+.eg-title-section {
+  margin: 0;
+  font-size: var(--eg-text-lg);
+  font-weight: var(--eg-weight-semibold);
+  line-height: var(--eg-leading-tight);
+  letter-spacing: var(--eg-tracking-title);
+}
+
+/* Eyebrow / label: maiuscoletto spaziato, usato per intestare gruppi */
+.eg-label-eyebrow {
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: var(--eg-text-muted);
+}
+
+.eg-text-secondary { color: var(--eg-text-secondary); }
+.eg-text-muted     { color: var(--eg-text-muted); }
+
+/* Numeri, importi, ID, date: sempre monospace tabellare */
+.eg-num {
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95em;
+}
+
+.eg-link {
+  color: var(--eg-text-link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--eg-duration-fast) var(--eg-ease);
+}
+.eg-link:hover { border-bottom-color: currentColor; }
+
+.eg-divider {
+  height: 1px;
+  border: 0;
+  margin: var(--eg-space-6) 0;
+  background: var(--eg-border);
+}
+
+/* --- Stack: spaziatura verticale coerente senza margini casuali ---------- */
+.eg-stack   { display: flex; flex-direction: column; gap: var(--eg-space-4); }
+.eg-stack-section { display: flex; flex-direction: column; gap: var(--eg-space-section); }
+.eg-stack-2 { display: flex; flex-direction: column; gap: var(--eg-space-2); }
+.eg-stack-6 { display: flex; flex-direction: column; gap: var(--eg-space-6); }
+
+.eg-row {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+}
+.eg-row-end { margin-left: auto; }
+
+
+/* ===== src/components/layout.css ===== */
+/* ==========================================================================
+   LAYOUT — .eg-shell / .eg-sidebar / .eg-topbar / .eg-page
+   Conta più di tutti gli altri file: è la struttura che fa dire
+   "è lo stesso software" molto prima dei colori.
+
+   Direzione fluida: la sidebar è una scheda che galleggia sull'avorio,
+   non un pannello incastrato nel bordo. Sopra l'avorio c'è il bagliore
+   arancione preso dai materiali di marca.
+   ========================================================================== */
+
+.eg-shell {
+  display: grid;
+  grid-template-columns: var(--eg-sidebar-w) minmax(0, 1fr);
+  gap: var(--eg-space-gutter);
+  min-height: 100vh;
+  padding: var(--eg-space-gutter);
+  background: var(--eg-bg-app);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Firma: l'alone arancione degli originali di marca, fisso in alto a destra.
+   È l'unico elemento decorativo del sistema — tutto il resto lavora. */
+.eg-shell::before {
+  content: "";
+  position: fixed;
+  top: -20vh;
+  right: -10vw;
+  width: 70vw;
+  height: 70vh;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side,
+      rgba(var(--eg-brand-rgb), 0.30),
+      rgba(var(--eg-brand-rgb), 0.10) 55%,
+      transparent 78%);
+  filter: blur(20px);
+}
+
+[data-eg-theme="dark"] .eg-shell::before {
+  background: radial-gradient(closest-side,
+    rgba(var(--eg-brand-rgb), 0.16),
+    transparent 72%);
+}
+
+/* --- Sidebar: scheda nera sospesa ---------------------------------------- */
+.eg-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: var(--eg-space-gutter);
+  height: calc(100vh - var(--eg-space-gutter) * 2);
+  padding: var(--eg-space-3);
+  border-radius: var(--eg-radius-xl);
+  background: var(--eg-brand-black);
+  color: var(--eg-neutral-300);
+  box-shadow: var(--eg-shadow-md);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.eg-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  height: var(--eg-topbar-h);
+  padding: 0 var(--eg-space-3);
+  color: var(--eg-neutral-0);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  font-size: var(--eg-text-sm);
+  text-transform: uppercase;
+}
+
+/* Il segno del marchio: l'arco arancione del logo, ridotto a un tratto */
+.eg-sidebar__mark {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50% 50% 50% 4px;
+  background: linear-gradient(135deg, var(--eg-primary-400), var(--eg-primary-600));
+  box-shadow: var(--eg-glow-brand);
+}
+
+.eg-sidebar__section {
+  padding: var(--eg-space-5) var(--eg-space-3) var(--eg-space-2);
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.eg-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eg-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  height: var(--eg-control-h-md);
+  padding: 0 var(--eg-space-3);
+  border-radius: var(--eg-radius-full);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--eg-text-base);
+  font-weight: var(--eg-weight-medium);
+  text-decoration: none;
+  transition: background-color var(--eg-duration-fast) var(--eg-ease),
+              color var(--eg-duration-fast) var(--eg-ease),
+              transform var(--eg-duration-fast) var(--eg-ease);
+}
+
+.eg-nav-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--eg-neutral-0);
+  transform: translateX(2px);
+}
+
+/* Voce attiva: pillola arancione piena, testo nero — la stessa coppia
+   del logo, e l'unica leggibile su #ff9330. */
+.eg-nav-item[aria-current="page"],
+.eg-nav-item--active {
+  background: var(--eg-primary-500);
+  color: var(--eg-on-primary);
+  font-weight: var(--eg-weight-semibold);
+  box-shadow: var(--eg-glow-brand);
+}
+
+.eg-nav-item[aria-current="page"]:hover,
+.eg-nav-item--active:hover {
+  background: var(--eg-primary-400);
+  color: var(--eg-on-primary);
+}
+
+.eg-nav-item__badge {
+  margin-left: auto;
+  font-family: var(--eg-font-mono);
+  font-size: var(--eg-text-xs);
+  color: inherit;
+  opacity: 0.7;
+}
+
+.eg-sidebar__footer {
+  margin-top: auto;
+  padding: var(--eg-space-4) var(--eg-space-3) var(--eg-space-2);
+  font-size: var(--eg-text-xs);
+  color: rgba(255, 255, 255, 0.32);
+}
+
+/* --- Colonna principale --------------------------------------------------- */
+.eg-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: var(--eg-space-gutter);
+}
+
+/* Topbar velata: lascia trasparire il bagliore mentre si scorre */
+.eg-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  height: var(--eg-topbar-h);
+  padding: 0 var(--eg-space-5);
+  border-radius: var(--eg-radius-lg);
+  background: var(--eg-bg-veil);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: var(--eg-shadow-sm);
+  position: sticky;
+  top: var(--eg-space-gutter);
+  z-index: var(--eg-z-sticky);
+}
+
+.eg-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+  font-size: var(--eg-text-sm);
+  color: var(--eg-text-muted);
+}
+.eg-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--eg-duration-fast) var(--eg-ease);
+}
+.eg-breadcrumb a:hover { color: var(--eg-text-primary); }
+.eg-breadcrumb__sep { color: var(--eg-border-strong); }
+
+.eg-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--eg-radius-full);
+  background: var(--eg-primary-500);
+  color: var(--eg-on-primary);
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+}
+
+/* --- Pagina ---------------------------------------------------------------- */
+.eg-page {
+  width: 100%;
+  max-width: var(--eg-content-max);
+  margin: 0 auto;
+  padding: 0 var(--eg-space-2) var(--eg-space-section);
+}
+
+.eg-page__header {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--eg-space-4);
+  margin-bottom: var(--eg-space-section);
+}
+
+.eg-page__subtitle {
+  margin: var(--eg-space-2) 0 0;
+  color: var(--eg-text-secondary);
+  max-width: 62ch;
+}
+
+.eg-page__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+}
+
+/* Griglia fluida: si adatta senza breakpoint manuali */
+.eg-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: var(--eg-space-gutter);
+}
+
+/* --- Barra filtri sopra le tabelle ---------------------------------------- */
+.eg-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--eg-space-2);
+  margin-bottom: var(--eg-space-4);
+}
+.eg-toolbar__search { min-width: 240px; flex: 1 1 240px; max-width: 400px; }
+
+/* --- Responsive: la sidebar diventa una barra flottante in alto ---------- */
+@media (max-width: 900px) {
+  .eg-shell {
+    grid-template-columns: 1fr;
+    padding: var(--eg-space-3);
+  }
+  .eg-sidebar {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--eg-space-2);
+    overflow-x: auto;
+    border-radius: var(--eg-radius-lg);
+  }
+  .eg-sidebar__brand {
+    height: auto;
+    padding-right: var(--eg-space-2);
+  }
+  .eg-sidebar__name { display: none; }
+  .eg-sidebar__section,
+  .eg-sidebar__footer { display: none; }
+  .eg-sidebar__nav { flex-direction: row; }
+  .eg-nav-item { white-space: nowrap; }
+  .eg-nav-item:hover { transform: none; }
+  .eg-topbar { position: static; }
+}
+
+
+/* ===== src/components/button.css ===== */
+/* ==========================================================================
+   BUTTON — .eg-btn
+   Varianti: --primary | --secondary | --ghost | --danger
+   Dimensioni: --sm | (default md) | --lg
+   Forma a pillola: coerente con i chip della guida di marca e con la
+   navigazione. Il movimento è minimo e sempre lo stesso: 1px verso l'alto.
+   ========================================================================== */
+
+.eg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--eg-space-2);
+  height: var(--eg-control-h-md);
+  padding: 0 var(--eg-space-5);
+  border: 1px solid transparent;
+  border-radius: var(--eg-radius-full);
+  background: transparent;
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-base);
+  font-weight: var(--eg-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--eg-duration-fast) var(--eg-ease),
+              border-color var(--eg-duration-fast) var(--eg-ease),
+              color var(--eg-duration-fast) var(--eg-ease),
+              box-shadow var(--eg-duration-base) var(--eg-ease),
+              transform var(--eg-duration-fast) var(--eg-ease);
+}
+
+.eg-btn:hover:not(:disabled) { transform: translateY(-1px); }
+.eg-btn:active:not(:disabled) {
+  transform: translateY(0);
+  transition-duration: 60ms;
+}
+
+.eg-btn:disabled,
+.eg-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Varianti -------------------------------------------------------------
+   Arancione pieno + testo nero: la coppia del logo, e l'unica leggibile
+   su #ff9330 (9.5:1, contro i 2.2:1 del bianco).                            */
+.eg-btn--primary {
+  background: var(--eg-primary-500);
+  border-color: var(--eg-primary-500);
+  color: var(--eg-on-primary);
+  font-weight: var(--eg-weight-semibold);
+  box-shadow: var(--eg-glow-brand);
+}
+.eg-btn--primary:hover:not(:disabled) {
+  background: var(--eg-primary-400);
+  border-color: var(--eg-primary-400);
+  box-shadow: 0 10px 26px -8px rgba(var(--eg-brand-rgb), 0.7);
+}
+
+.eg-btn--secondary {
+  background: var(--eg-bg-surface);
+  border-color: var(--eg-border-strong);
+  color: var(--eg-text-primary);
+  box-shadow: var(--eg-shadow-xs);
+}
+.eg-btn--secondary:hover:not(:disabled) {
+  border-color: var(--eg-neutral-400);
+  box-shadow: var(--eg-shadow-sm);
+}
+
+.eg-btn--ghost {
+  color: var(--eg-text-secondary);
+}
+.eg-btn--ghost:hover:not(:disabled) {
+  background: var(--eg-bg-hover);
+  color: var(--eg-text-primary);
+  transform: none;
+}
+
+.eg-btn--danger {
+  background: var(--eg-danger-500);
+  border-color: var(--eg-danger-500);
+  color: var(--eg-neutral-0);
+}
+.eg-btn--danger:hover:not(:disabled) {
+  background: var(--eg-danger-600);
+  border-color: var(--eg-danger-600);
+}
+
+/* --- Dimensioni ------------------------------------------------------------ */
+.eg-btn--sm {
+  height: var(--eg-control-h-sm);
+  padding: 0 var(--eg-space-3);
+  font-size: var(--eg-text-sm);
+}
+.eg-btn--lg {
+  height: var(--eg-control-h-lg);
+  padding: 0 var(--eg-space-6);
+  font-size: var(--eg-text-md);
+}
+
+.eg-btn--icon {
+  width: var(--eg-control-h-md);
+  padding: 0;
+}
+.eg-btn--icon.eg-btn--sm { width: var(--eg-control-h-sm); }
+
+.eg-btn--block { width: 100%; }
+
+.eg-btn-group {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+}
+
+
+/* ===== src/components/form.css ===== */
+/* ==========================================================================
+   FORM — .eg-field / .eg-input / .eg-select / .eg-textarea
+   ========================================================================== */
+
+.eg-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--eg-space-2);
+}
+
+.eg-field__label {
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-medium);
+  color: var(--eg-text-primary);
+}
+
+.eg-field__label--required::after {
+  content: "*";
+  margin-left: 2px;
+  color: var(--eg-danger-500);
+}
+
+/* Aiuto: cosa scrivere. Errore: cosa è successo e come si risolve. */
+.eg-field__hint {
+  font-size: var(--eg-text-xs);
+  color: var(--eg-text-muted);
+}
+
+.eg-field__error {
+  font-size: var(--eg-text-xs);
+  color: var(--eg-danger-600);
+}
+
+/* --- Controlli ----------------------------------------------------------- */
+.eg-input,
+.eg-select,
+.eg-textarea {
+  width: 100%;
+  padding: 0 var(--eg-space-3);
+  border: 1px solid var(--eg-border-strong);
+  border-radius: var(--eg-radius-md);
+  background: var(--eg-bg-surface);
+  box-shadow: var(--eg-shadow-xs);
+  color: var(--eg-text-primary);
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-md);
+  line-height: var(--eg-leading-base);
+  transition: border-color var(--eg-duration-fast) var(--eg-ease),
+              box-shadow var(--eg-duration-base) var(--eg-ease);
+}
+
+.eg-input,
+.eg-select {
+  height: var(--eg-control-h-md);
+}
+
+.eg-textarea {
+  min-height: 96px;
+  padding: var(--eg-space-2) var(--eg-space-3);
+  resize: vertical;
+}
+
+.eg-input::placeholder,
+.eg-textarea::placeholder {
+  color: var(--eg-text-muted);
+}
+
+.eg-input:hover:not(:disabled),
+.eg-select:hover:not(:disabled),
+.eg-textarea:hover:not(:disabled) {
+  border-color: var(--eg-neutral-400);
+}
+
+.eg-input:focus,
+.eg-select:focus,
+.eg-textarea:focus {
+  outline: none;
+  border-color: var(--eg-primary-500);
+  box-shadow: var(--eg-ring-focus);
+}
+
+.eg-input:disabled,
+.eg-select:disabled,
+.eg-textarea:disabled {
+  background: var(--eg-bg-sunken);
+  color: var(--eg-text-muted);
+  cursor: not-allowed;
+}
+
+.eg-input--invalid,
+.eg-select--invalid,
+.eg-textarea--invalid {
+  border-color: var(--eg-danger-500);
+}
+.eg-input--invalid:focus,
+.eg-textarea--invalid:focus {
+  box-shadow: 0 0 0 3px var(--eg-danger-50);
+}
+
+.eg-input--sm,
+.eg-select--sm {
+  height: var(--eg-control-h-sm);
+  font-size: var(--eg-text-sm);
+  padding: 0 var(--eg-space-2);
+}
+
+/* Campi numerici e importi in monospace */
+.eg-input--num {
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.eg-select {
+  appearance: none;
+  padding-right: var(--eg-space-8);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23736c63' stroke-width='1.6' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--eg-space-3) center;
+}
+
+/* --- Checkbox / radio ---------------------------------------------------- */
+.eg-check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+  font-size: var(--eg-text-base);
+  cursor: pointer;
+}
+.eg-check input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--eg-primary-600);
+  cursor: pointer;
+}
+
+/* --- Griglia form: due colonne che collassano su mobile ------------------ */
+.eg-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--eg-space-gutter);
+}
+.eg-form-grid > .eg-field--full { grid-column: 1 / -1; }
+
+@media (max-width: 720px) {
+  .eg-form-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ===== src/components/data.css ===== */
+/* ==========================================================================
+   DATA — .eg-table / .eg-card / .eg-badge / .eg-empty
+   ========================================================================== */
+
+/* --- Card ---------------------------------------------------------------- */
+.eg-card {
+  background: var(--eg-bg-surface);
+  border: 1px solid var(--eg-border);
+  border-radius: var(--eg-radius-lg);
+  box-shadow: var(--eg-shadow-sm);
+  transition: box-shadow var(--eg-duration-base) var(--eg-ease),
+              transform var(--eg-duration-base) var(--eg-ease);
+}
+
+/* Solo le card cliccabili reagiscono: il movimento segnala l'interazione,
+   non decora. */
+.eg-card--interactive { cursor: pointer; }
+.eg-card--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--eg-shadow-md);
+}
+
+.eg-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  padding: var(--eg-space-4) var(--eg-space-5);
+  border-bottom: 1px solid var(--eg-border);
+}
+
+.eg-card__body { padding: var(--eg-space-5); }
+
+.eg-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--eg-space-2);
+  padding: var(--eg-space-4) var(--eg-space-5);
+  border-top: 1px solid var(--eg-border);
+  background: var(--eg-bg-sunken);
+  border-radius: 0 0 var(--eg-radius-lg) var(--eg-radius-lg);
+}
+
+/* KPI: il numero è il protagonista, la label lo serve */
+.eg-kpi__label {
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: var(--eg-text-muted);
+}
+.eg-kpi__value {
+  margin-top: var(--eg-space-1);
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--eg-text-2xl);
+  font-weight: var(--eg-weight-semibold);
+  line-height: var(--eg-leading-tight);
+  letter-spacing: var(--eg-tracking-title);
+}
+
+/* --- Tabella ------------------------------------------------------------- */
+.eg-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--eg-border);
+  border-radius: var(--eg-radius-lg);
+  background: var(--eg-bg-surface);
+  box-shadow: var(--eg-shadow-sm);
+}
+
+.eg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--eg-text-sm);
+}
+
+/* L'intestazione si ferma sotto la topbar, non sotto il bordo finestra */
+.eg-table thead th {
+  position: sticky;
+  top: calc(var(--eg-topbar-h) + var(--eg-space-gutter));
+  z-index: var(--eg-z-dropdown);
+  padding: var(--eg-space-3) var(--eg-space-4);
+  background: var(--eg-bg-surface);
+  border-bottom: 1px solid var(--eg-border);
+  text-align: left;
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-semibold);
+  letter-spacing: var(--eg-tracking-label);
+  text-transform: uppercase;
+  color: var(--eg-text-muted);
+  white-space: nowrap;
+}
+
+.eg-table tbody td {
+  padding: var(--eg-space-3) var(--eg-space-4);
+  border-bottom: 1px solid var(--eg-border);
+  color: var(--eg-text-primary);
+  vertical-align: middle;
+}
+
+.eg-table tbody tr:last-child td { border-bottom: 0; }
+
+.eg-table tbody tr {
+  transition: background-color var(--eg-duration-fast) var(--eg-ease);
+}
+.eg-table tbody tr:hover { background: var(--eg-bg-hover); }
+
+.eg-table tbody tr[aria-selected="true"] { background: var(--eg-bg-selected); }
+
+/* Importi e date: colonna numerica allineata a destra, monospace */
+.eg-table .eg-col-num {
+  text-align: right;
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eg-table .eg-col-actions {
+  width: 1%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.eg-table--compact tbody td { padding: var(--eg-space-2) var(--eg-space-4); }
+
+/* --- Badge / stato ------------------------------------------------------- */
+.eg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--eg-space-1);
+  height: 24px;
+  padding: 0 var(--eg-space-3);
+  border-radius: var(--eg-radius-full);
+  background: var(--eg-bg-sunken);
+  color: var(--eg-text-secondary);
+  font-size: var(--eg-text-xs);
+  font-weight: var(--eg-weight-medium);
+  white-space: nowrap;
+}
+
+.eg-badge--success { background: var(--eg-success-50); color: var(--eg-success-700); }
+.eg-badge--warning { background: var(--eg-warning-50); color: var(--eg-warning-700); }
+.eg-badge--danger  { background: var(--eg-danger-50);  color: var(--eg-danger-700); }
+.eg-badge--info    { background: var(--eg-info-50);    color: var(--eg-info-700); }
+.eg-badge--brand   { background: var(--eg-primary-100); color: var(--eg-primary-800); }
+
+/* Pallino di stato per liste dense, dove il badge sarebbe troppo pesante */
+.eg-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--eg-radius-full);
+  background: var(--eg-neutral-400);
+}
+.eg-dot--success { background: var(--eg-success-500); }
+.eg-dot--warning { background: var(--eg-warning-500); }
+.eg-dot--danger  { background: var(--eg-danger-500); }
+
+/* --- Stato vuoto: è un invito ad agire, non un messaggio di scusa -------- */
+.eg-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--eg-space-3);
+  padding: var(--eg-space-section) var(--eg-space-6);
+  text-align: center;
+}
+.eg-empty__title {
+  font-size: var(--eg-text-lg);
+  font-weight: var(--eg-weight-semibold);
+}
+.eg-empty__text {
+  max-width: 44ch;
+  color: var(--eg-text-secondary);
+}
+
+/* --- Skeleton di caricamento -------------------------------------------- */
+.eg-skeleton {
+  height: 1em;
+  border-radius: var(--eg-radius-sm);
+  background: linear-gradient(90deg,
+    var(--eg-bg-sunken) 25%,
+    var(--eg-neutral-200) 37%,
+    var(--eg-bg-sunken) 63%);
+  background-size: 400% 100%;
+  animation: eg-shimmer 1.4s ease infinite;
+}
+
+@keyframes eg-shimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eg-skeleton { animation: none; }
+}
+
+
+/* ===== src/components/overlay.css ===== */
+/* ==========================================================================
+   OVERLAY & FEEDBACK — .eg-modal / .eg-toast / .eg-alert / .eg-tabs
+   ========================================================================== */
+
+/* --- Modal --------------------------------------------------------------- */
+.eg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--eg-z-overlay);
+  background: rgba(15, 14, 13, 0.42);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  animation: eg-fade-in var(--eg-duration-base) var(--eg-ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--eg-space-4);
+}
+
+.eg-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--eg-bg-surface);
+  border-radius: var(--eg-radius-xl);
+  box-shadow: var(--eg-shadow-lg);
+  z-index: var(--eg-z-modal);
+  animation: eg-modal-in var(--eg-duration-base) var(--eg-ease-spring);
+}
+
+@keyframes eg-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes eg-modal-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.eg-modal--lg { max-width: 800px; }
+
+.eg-modal__header {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-3);
+  padding: var(--eg-space-5);
+  border-bottom: 1px solid var(--eg-border);
+}
+
+.eg-modal__title {
+  margin: 0;
+  font-size: var(--eg-text-lg);
+  font-weight: var(--eg-weight-semibold);
+}
+
+.eg-modal__body {
+  padding: var(--eg-space-5);
+  overflow-y: auto;
+}
+
+.eg-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--eg-space-2);
+  padding: var(--eg-space-4) var(--eg-space-5);
+  border-top: 1px solid var(--eg-border);
+}
+
+/* --- Alert inline -------------------------------------------------------- */
+.eg-alert {
+  display: flex;
+  gap: var(--eg-space-3);
+  padding: var(--eg-space-3) var(--eg-space-4);
+  border: 1px solid var(--eg-border);
+  border-left: 3px solid var(--eg-neutral-400);
+  border-radius: var(--eg-radius-md);
+  background: var(--eg-bg-sunken);
+  font-size: var(--eg-text-base);
+}
+
+.eg-alert__title {
+  font-weight: var(--eg-weight-semibold);
+  margin-bottom: 2px;
+}
+
+.eg-alert--success {
+  background: var(--eg-success-50);
+  border-color: var(--eg-success-500);
+  border-left-color: var(--eg-success-500);
+  color: var(--eg-success-700);
+}
+.eg-alert--warning {
+  background: var(--eg-warning-50);
+  border-color: var(--eg-warning-500);
+  border-left-color: var(--eg-warning-500);
+  color: var(--eg-warning-700);
+}
+.eg-alert--danger {
+  background: var(--eg-danger-50);
+  border-color: var(--eg-danger-500);
+  border-left-color: var(--eg-danger-500);
+  color: var(--eg-danger-700);
+}
+
+/* --- Toast --------------------------------------------------------------- */
+.eg-toast-region {
+  position: fixed;
+  bottom: var(--eg-space-6);
+  right: var(--eg-space-6);
+  z-index: var(--eg-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--eg-space-2);
+  max-width: 380px;
+}
+
+.eg-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--eg-space-3);
+  padding: var(--eg-space-3) var(--eg-space-4);
+  border: 1px solid var(--eg-border);
+  border-radius: var(--eg-radius-md);
+  background: var(--eg-bg-surface);
+  box-shadow: var(--eg-shadow-md);
+  font-size: var(--eg-text-base);
+  animation: eg-toast-in var(--eg-duration-base) var(--eg-ease-spring);
+}
+
+@keyframes eg-toast-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --- Tabs ---------------------------------------------------------------- */
+.eg-tabs {
+  display: flex;
+  gap: var(--eg-space-1);
+  border-bottom: 1px solid var(--eg-border);
+  margin-bottom: var(--eg-space-5);
+}
+
+.eg-tab {
+  position: relative;
+  padding: var(--eg-space-3) var(--eg-space-4);
+  border: 0;
+  border-radius: var(--eg-radius-md) var(--eg-radius-md) 0 0;
+  background: transparent;
+  color: var(--eg-text-secondary);
+  transition: color var(--eg-duration-fast) var(--eg-ease);
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-base);
+  font-weight: var(--eg-weight-medium);
+  cursor: pointer;
+}
+
+.eg-tab:hover { color: var(--eg-text-primary); }
+
+.eg-tab[aria-selected="true"] {
+  color: var(--eg-text-primary);
+}
+.eg-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: var(--eg-space-3);
+  right: var(--eg-space-3);
+  bottom: -1px;
+  height: 3px;
+  background: var(--eg-primary-500);
+  border-radius: var(--eg-radius-full);
+}
+
+/* --- Dropdown / menu ----------------------------------------------------- */
+.eg-menu {
+  min-width: 180px;
+  padding: var(--eg-space-1);
+  border: 1px solid var(--eg-border);
+  border-radius: var(--eg-radius-lg);
+  background: var(--eg-bg-surface);
+  box-shadow: var(--eg-shadow-md);
+  z-index: var(--eg-z-dropdown);
+}
+
+.eg-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--eg-space-2);
+  width: 100%;
+  padding: var(--eg-space-2) var(--eg-space-3);
+  border: 0;
+  border-radius: var(--eg-radius-sm);
+  background: transparent;
+  color: var(--eg-text-primary);
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-base);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.eg-menu__item:hover { background: var(--eg-bg-hover); }
+.eg-menu__item--danger { color: var(--eg-danger-600); }
+.eg-menu__sep {
+  height: 1px;
+  margin: var(--eg-space-1) 0;
+  background: var(--eg-border);
+}

@@ -1311,9 +1311,13 @@
 
 /* --- Fascia -------------------------------------------------------------- */
 .eg-fascia {
+  /* Il numero protagonista scala sulla larghezza della fascia, non della
+     finestra: in un gestionale con menu laterale la fascia e' molto piu'
+     stretta dello schermo, e in vw il numero sbordava nella colonna accanto. */
+  container-type: inline-size;
   display: grid;
   gap: clamp(20px, 3vw, 48px);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
   align-items: end;
   padding: clamp(20px, 3vw, 36px);
   border-radius: var(--eg-radius-report);
@@ -1323,7 +1327,7 @@
 
 /* Il numero protagonista: Poppins e non monospazio, qui e' un titolo. */
 .eg-fascia__eroe {
-  font-size: clamp(64px, 9vw, 136px);
+  font-size: clamp(48px, 7.5cqi, 136px);
   font-weight: var(--eg-weight-semibold);
   line-height: 0.9;
   letter-spacing: -0.03em;
@@ -1437,6 +1441,10 @@
    .eg-table finirebbe sopra la prima riga: qui resta ferma. */
 .eg-table--netta thead th {
   position: static;
+  /* Se una colonna la si vuole ferma a sinistra (position: sticky; left: 0)
+     la distanza dall'alto di .eg-table non deve seguirla: spingerebbe
+     l'intestazione sopra la prima riga. */
+  top: auto;
   padding: var(--eg-space-2) var(--eg-space-4);
   border-bottom: 2px solid var(--eg-text-primary);
   font-size: var(--eg-text-sm);

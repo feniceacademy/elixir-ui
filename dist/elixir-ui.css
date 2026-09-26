@@ -1281,3 +1281,270 @@
   margin: var(--eg-space-1) 0;
   background: var(--eg-border);
 }
+
+
+/* ===== src/components/report.css ===== */
+/* ==========================================================================
+   REPORT — lo stile delle pagine di numeri (nato con «Lancio Web Dev AI»
+   in crm-marketing, adottato dal cruscotto CEO del gestionale).
+
+   Tre regole:
+   - l'arancione entra a fasce piene e a contorno, mai come avviso;
+   - gli stacchi sono bordi, non ombre: sezioni squadrate, un tratto netto;
+   - i numeri importanti sono fuori scala, quelli di tabella in monospazio.
+
+   .eg-fascia     il blocco arancione in cima, col numero protagonista
+   .eg-fatto      un dato dentro la fascia (etichetta, valore, dettaglio)
+   .eg-sezione    un riquadro squadrato con titolo, tabella, piede di KPI
+   .eg-table--netta  intestazione in chiaro sopra una riga nera
+   .eg-riquadro   contorno arancione per le cose da sapere
+   .eg-scelta     bottone a contorno arancione, pieno quando e' attivo
+   .eg-barra      barra sottile sotto un numero, con tacca opzionale
+   ========================================================================== */
+
+:root {
+  /* Il testo sulla fascia resta scuro in entrambi i temi: la fascia e'
+     arancione in entrambi. */
+  --eg-ink-on-brand: #171717;
+  --eg-radius-report: 10px;
+}
+
+/* --- Fascia -------------------------------------------------------------- */
+.eg-fascia {
+  display: grid;
+  gap: clamp(20px, 3vw, 48px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  align-items: end;
+  padding: clamp(20px, 3vw, 36px);
+  border-radius: var(--eg-radius-report);
+  background: var(--eg-brand);
+  color: var(--eg-ink-on-brand);
+}
+
+/* Il numero protagonista: Poppins e non monospazio, qui e' un titolo. */
+.eg-fascia__eroe {
+  font-size: clamp(64px, 9vw, 136px);
+  font-weight: var(--eg-weight-semibold);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.eg-fascia__didascalia {
+  margin-top: 12px;
+  font-size: var(--eg-text-xl);
+  font-weight: var(--eg-weight-medium);
+}
+.eg-fascia__nota {
+  margin-top: 4px;
+  font-size: var(--eg-text-md);
+}
+.eg-fascia__intro {
+  margin-bottom: 10px;
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-medium);
+}
+.eg-fascia__fatti {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.eg-fatto {
+  min-width: 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(23, 23, 23, 0.25);
+}
+.eg-fatto__etichetta {
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-medium);
+  opacity: 0.8;
+}
+.eg-fatto__valore {
+  font-size: clamp(22px, 2.3vw, 34px);
+  font-weight: var(--eg-weight-semibold);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.eg-fatto__dettaglio {
+  font-size: var(--eg-text-sm);
+  opacity: 0.8;
+}
+
+/* Barra dentro la fascia: scura su arancione */
+.eg-fascia .eg-barra { background: rgba(23, 23, 23, 0.15); }
+.eg-fascia .eg-barra__pieno { background: var(--eg-ink-on-brand); }
+
+/* --- Sezione ------------------------------------------------------------- */
+.eg-sezione {
+  border: 1px solid var(--eg-border-strong);
+  background: var(--eg-bg-surface);
+}
+.eg-sezione__testa {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 20px 6px;
+}
+.eg-sezione__titolo {
+  margin: 0;
+  font-size: var(--eg-text-lg);
+  font-weight: var(--eg-weight-semibold);
+  line-height: var(--eg-leading-tight);
+  letter-spacing: var(--eg-tracking-title);
+}
+.eg-sezione__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: var(--eg-text-sm);
+  color: var(--eg-text-muted);
+}
+.eg-sezione__corpo { padding: 8px 20px 20px; }
+.eg-sezione__scorri { overflow-x: auto; }
+
+/* Il piede: una griglia di KPI sotto la tabella */
+.eg-sezione__piede {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  padding: 16px 20px 20px;
+  border-top: 1px solid var(--eg-border-strong);
+}
+.eg-kpi-piede__etichetta {
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-medium);
+  color: var(--eg-text-muted);
+}
+.eg-kpi-piede__valore {
+  font-family: var(--eg-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--eg-text-xl);
+  font-weight: var(--eg-weight-semibold);
+}
+.eg-kpi-piede__dettaglio {
+  margin-top: 6px;
+  font-size: var(--eg-text-sm);
+  color: var(--eg-text-muted);
+}
+
+/* --- Tabella netta ------------------------------------------------------- */
+/* Dentro una sezione che scorre in orizzontale l'intestazione sticky di
+   .eg-table finirebbe sopra la prima riga: qui resta ferma. */
+.eg-table--netta thead th {
+  position: static;
+  padding: var(--eg-space-2) var(--eg-space-4);
+  border-bottom: 2px solid var(--eg-text-primary);
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-medium);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--eg-text-secondary);
+  vertical-align: bottom;
+}
+.eg-table--netta tbody td,
+.eg-table--netta tbody th { padding: var(--eg-space-2) var(--eg-space-4); }
+
+/* Linea verticale fra gruppi di colonne */
+.eg-table .eg-col-sep { border-left: 1px solid var(--eg-border-strong); }
+
+/* Intestazione di un gruppo di righe: un tratto arancione sopra */
+.eg-table .eg-riga-gruppo > th,
+.eg-table .eg-riga-gruppo > td {
+  padding-top: var(--eg-space-4);
+  border-top: 2px solid var(--eg-brand);
+  border-bottom: 1px solid var(--eg-border-strong);
+  background: transparent;
+  color: var(--eg-text-primary);
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-semibold);
+  text-align: left;
+}
+.eg-table tbody:first-of-type .eg-riga-gruppo > th { border-top: 0; }
+
+/* La riga del totale: stesso tratto, grassetto */
+.eg-table .eg-riga-totale > td {
+  border-top: 2px solid var(--eg-brand);
+  font-weight: var(--eg-weight-semibold);
+}
+
+/* La riga di oggi */
+.eg-table .eg-riga-oggi > td { background: var(--eg-bg-selected); }
+
+/* --- Riquadro ------------------------------------------------------------ */
+.eg-riquadro {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border: 1px solid var(--eg-brand);
+  border-radius: var(--eg-radius-report);
+  font-size: var(--eg-text-sm);
+  color: var(--eg-text-secondary);
+}
+.eg-riquadro strong { color: var(--eg-text-primary); font-weight: var(--eg-weight-semibold); }
+
+/* --- Scelta -------------------------------------------------------------- */
+.eg-scelta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--eg-brand);
+  border-radius: var(--eg-radius-report);
+  background: transparent;
+  color: var(--eg-text-primary);
+  font-family: var(--eg-font-sans);
+  font-size: var(--eg-text-sm);
+  font-weight: var(--eg-weight-medium);
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background-color var(--eg-duration-fast) var(--eg-ease);
+}
+.eg-scelta:hover:not(:disabled) { background: var(--eg-primary-50); }
+.eg-scelta:disabled { opacity: 0.5; cursor: not-allowed; }
+.eg-scelta[aria-pressed="true"],
+.eg-scelta[aria-expanded="true"],
+.eg-scelta--piena {
+  background: var(--eg-brand);
+  color: var(--eg-ink-on-brand);
+}
+.eg-scelta[aria-pressed="true"]:hover:not(:disabled),
+.eg-scelta[aria-expanded="true"]:hover:not(:disabled),
+.eg-scelta--piena:hover:not(:disabled) { background: var(--eg-primary-400); }
+
+/* --- Barra --------------------------------------------------------------- */
+.eg-barra {
+  position: relative;
+  display: block;
+  height: 4px;
+  background: var(--eg-bg-sunken);
+}
+.eg-barra--spessa { height: 10px; }
+.eg-barra__pieno {
+  display: block;
+  height: 100%;
+  background: var(--eg-brand);
+}
+/* Il pieno che parte da destra, sotto un numero allineato a destra */
+.eg-barra--destra .eg-barra__pieno { margin-left: auto; }
+/* La tacca: un minimo o un obiettivo, scura e un po' piu' alta della barra */
+.eg-barra__tacca {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--eg-text-primary);
+}
+
+/* --- Stato a parole ------------------------------------------------------ */
+/* Niente pillole: lo stato e' una parola colorata, e il colore non e' mai
+   l'unica informazione. */
+.eg-esito--ok     { color: var(--eg-success-500); font-weight: var(--eg-weight-semibold); }
+.eg-esito--attenzione { color: var(--eg-warning-500); font-weight: var(--eg-weight-semibold); }
+.eg-esito--allarme { color: var(--eg-danger-500); font-weight: var(--eg-weight-semibold); }

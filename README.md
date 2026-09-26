@@ -18,6 +18,7 @@ src/
     form.css              # .eg-field / .eg-input / .eg-select / .eg-textarea
     data.css              # .eg-table / .eg-card / .eg-badge / .eg-empty
     overlay.css           # .eg-modal / .eg-toast / .eg-alert / .eg-tabs
+    report.css            # .eg-fascia / .eg-sezione / .eg-table--netta / .eg-riquadro / .eg-scelta / .eg-barra
 scripts/build.mjs         # concatena src/ in dist/ — l'ordine conta
 dist/elixir-ui.css        # generato, committato: i consumer via submodule non eseguono npm install
 demo.html                 # style guide navigabile, apribile in locale dopo il build
@@ -81,3 +82,31 @@ Senza attributi resta l'arancione di gruppo. Fenice Academy lo condivide: nessun
 - Testo su arancione pieno: nero (`--eg-on-primary`), come nel logo.
 - Per testo e link non usare `#ff9330` (2.2:1 sul bianco): esistono i toni 700/800.
 - Le altezze dei controlli (30/38/46px) sono ciò che rende due app riconoscibilmente gemelle: non ritoccarle per singola app.
+
+## Stile report
+
+Per le pagine di numeri (cruscotti, lanci, obiettivi) c'è `report.css`, nato con la
+pagina «Lancio Web Dev AI» di crm-marketing: l'arancione entra a **fasce piene e a
+contorno**, gli stacchi sono **bordi e non ombre**, i numeri importanti sono **fuori
+scala**. Una pagina tipo:
+
+```html
+<section class="eg-fascia">
+  <div>
+    <div class="eg-fascia__eroe">182.989 €</div>
+    <div class="eg-fascia__didascalia">contratti firmati a settembre</div>
+  </div>
+  <div class="eg-fascia__fatti">
+    <div class="eg-fatto"><div class="eg-fatto__etichetta">Incasso</div>
+      <div class="eg-fatto__valore">98.000 €</div></div>
+  </div>
+</section>
+
+<section class="eg-sezione">
+  <div class="eg-sezione__testa"><h2 class="eg-sezione__titolo">Il mese</h2>
+    <div class="eg-sezione__meta"><button class="eg-scelta" aria-pressed="true">Mese</button></div></div>
+  <div class="eg-sezione__scorri"><table class="eg-table eg-table--netta eg-table--compact">…</table></div>
+</section>
+
+<div class="eg-riquadro"><strong>Come leggerla.</strong> …</div>
+```

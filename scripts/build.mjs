@@ -13,6 +13,7 @@ const files = [
   "src/components/form.css",
   "src/components/data.css",
   "src/components/overlay.css",
+  "src/components/report.css",
 ];
 
 const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8"));
